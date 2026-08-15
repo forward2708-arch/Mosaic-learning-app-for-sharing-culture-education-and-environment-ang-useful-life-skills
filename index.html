@@ -104,6 +104,6 @@ function quiz(){const a=prompt("Which helps preserve local culture?\\nA) Forgett
 function saveState(){localStorage.setItem("mosaicPosts",JSON.stringify(posts));localStorage.setItem("mosaicSaved",JSON.stringify(saved));localStorage.setItem("mosaicPoints",points)}
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",2200)}
 render();categories();
-</script>
+<script src="app.js"></script>
 </body>
 </html>

@@ -1,109 +1,1330 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mosaic — Learn · Keep · Share</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#155e4b">
+
+<title>Mosaic – Learn • Keep • Share</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f6f1e7;color:#183b32}
-header{position:sticky;top:0;background:#f6f1e7;border-bottom:1px solid #ddd5c8;padding:16px;z-index:5}
-.brand{font-family:Georgia,serif;font-size:34px;font-weight:700}.tag{color:#a55d4d;letter-spacing:3px;font-size:12px}
-nav{display:flex;gap:8px;overflow:auto;margin-top:14px}button{border:0;border-radius:22px;padding:11px 16px;background:#fff;color:#183b32;font-weight:600;cursor:pointer}.active,.primary{background:#205746;color:white}
-main{max-width:720px;margin:auto;padding:18px}.hero{background:#dfece4;border-radius:24px;padding:22px;margin-bottom:18px}.hero h1{margin:0 0 8px;font-size:28px}.search{width:100%;padding:14px;border:1px solid #d6cec2;border-radius:16px;font-size:16px;background:white;margin:14px 0}
-.card{background:white;border:1px solid #e0d9ce;border-radius:20px;margin:14px 0;overflow:hidden}.thumb{height:180px;background:#d9e4dc;display:grid;place-items:center;font-size:55px}.content{padding:16px}.meta{color:#777;font-size:13px}.actions{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.cat{padding:18px;border-radius:18px;background:white;border:1px solid #ddd5c8;font-weight:700}
-.hidden{display:none}.field{margin:12px 0}.field label{display:block;font-weight:700;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;padding:13px;border:1px solid #d5cdc0;border-radius:12px;font:inherit;background:white}.points{font-size:24px;font-weight:800}.badge{display:inline-block;padding:8px 11px;background:#e7efe9;border-radius:20px;margin:5px;font-size:13px}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#183b32;color:#fff;padding:12px 18px;border-radius:18px;display:none;z-index:10}
-footer{text-align:center;color:#777;padding:30px}
-</style><link rel="manifest" href="manifest.json">
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7f5;
+  color:#17352d;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:white;
+  border-bottom:1px solid #dce7e2;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.header-inner{
+  max-width:900px;
+  margin:auto;
+  padding:14px 16px 10px;
+}
+
+.brand{
+  font-family:Georgia,serif;
+  font-size:30px;
+  font-weight:bold;
+  color:#155e4b;
+}
+
+.tagline{
+  font-size:11px;
+  letter-spacing:2px;
+  color:#777;
+  margin-top:3px;
+}
+
+nav{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding-top:12px;
+  scrollbar-width:none;
+}
+
+nav::-webkit-scrollbar{
+  display:none;
+}
+
+nav button{
+  border:0;
+  padding:10px 14px;
+  border-radius:22px;
+  background:#f1f5f3;
+  color:#17352d;
+  font-weight:bold;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+nav button.active{
+  background:#155e4b;
+  color:white;
+}
+
+main{
+  max-width:900px;
+  margin:auto;
+  padding:18px 14px 80px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.hero{
+  background:linear-gradient(135deg,#dff2e9,#eef8f4);
+  border-radius:24px;
+  padding:24px;
+  margin-bottom:16px;
+}
+
+.hero h1{
+  margin:0 0 8px;
+  font-size:28px;
+}
+
+.hero p{
+  margin:0;
+  line-height:1.6;
+  color:#50655e;
+}
+
+.search{
+  width:100%;
+  padding:15px;
+  border:1px solid #d3dfda;
+  border-radius:16px;
+  font-size:16px;
+  margin-bottom:16px;
+  outline:none;
+}
+
+.search:focus{
+  border-color:#155e4b;
+}
+
+.card{
+  background:white;
+  border:1px solid #dce7e2;
+  border-radius:20px;
+  margin:14px 0;
+  overflow:hidden;
+  box-shadow:0 3px 12px rgba(0,0,0,.04);
+}
+
+.post-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px;
+}
+
+.post-icon{
+  width:50px;
+  height:50px;
+  border-radius:15px;
+  background:#e4f1eb;
+  display:grid;
+  place-items:center;
+  font-size:25px;
+}
+
+.post-content{
+  padding:0 16px 16px;
+}
+
+.post-content h3{
+  margin:5px 0 8px;
+  font-size:20px;
+}
+
+.post-content p{
+  line-height:1.6;
+  color:#53665f;
+}
+
+.meta{
+  color:#7a8883;
+  font-size:13px;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  padding-top:8px;
+}
+
+.actions button,
+.small-btn{
+  border:0;
+  background:#f1f5f3;
+  border-radius:18px;
+  padding:9px 12px;
+  cursor:pointer;
+}
+
+.primary{
+  background:#155e4b!important;
+  color:white!important;
+}
+
+.danger{
+  background:#ffe8e8!important;
+  color:#a32626!important;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.category{
+  background:white;
+  border:1px solid #dce7e2;
+  border-radius:18px;
+  padding:20px 14px;
+  text-align:center;
+  font-weight:bold;
+  cursor:pointer;
+  min-height:110px;
+}
+
+.category-icon{
+  font-size:34px;
+  margin-bottom:8px;
+}
+
+.learn-card{
+  padding:20px;
+}
+
+.learn-card h3{
+  margin-top:0;
+}
+
+.learn-card p{
+  line-height:1.65;
+  color:#53665f;
+}
+
+.field{
+  margin:13px 0;
+}
+
+.field label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding:13px;
+  border:1px solid #d3dfda;
+  border-radius:12px;
+  font-size:16px;
+  font-family:inherit;
+  background:white;
+}
+
+.field textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.form-card{
+  padding:20px;
+}
+
+.profile-head{
+  text-align:center;
+  padding:25px 10px;
+}
+
+.avatar{
+  width:90px;
+  height:90px;
+  margin:auto;
+  border-radius:50%;
+  background:#dff2e9;
+  display:grid;
+  place-items:center;
+  font-size:45px;
+}
+
+.points{
+  font-size:32px;
+  font-weight:bold;
+  color:#155e4b;
+  margin-top:10px;
+}
+
+.badge{
+  display:inline-block;
+  background:#eaf4ef;
+  padding:8px 12px;
+  border-radius:20px;
+  margin:4px;
+  font-size:13px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:15px;
+}
+
+.stat{
+  background:#f4f7f5;
+  border-radius:15px;
+  padding:14px 5px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:22px;
+  color:#155e4b;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%);
+  background:#17352d;
+  color:white;
+  padding:12px 18px;
+  border-radius:20px;
+  display:none;
+  z-index:999;
+  max-width:90%;
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  color:#7a8883;
+  padding:30px 10px;
+}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:#777;
+}
+
+@media(max-width:600px){
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
+
+  .brand{
+    font-size:27px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+</style>
 </head>
+
 <body>
+
 <header>
-<div class="brand">Mosaic</div><div class="tag">LEARN · KEEP · SHARE</div>
-<nav>
-<button class="active" onclick="show('home',this)">Home</button>
-<button onclick="show('categories',this)">Categories</button>
-<button onclick="show('learn',this)">Learn</button>
-<button onclick="show('profile',this)">Profile</button>
-</nav>
+  <div class="header-inner">
+
+    <div class="brand">Mosaic</div>
+    <div class="tagline">LEARN • KEEP • SHARE</div>
+
+    <nav>
+      <button class="active" onclick="showPage('home',this)">Home</button>
+      <button onclick="showPage('categories',this)">Categories</button>
+      <button onclick="showPage('learn',this)">Learn</button>
+      <button onclick="showPage('create',this)">Create</button>
+      <button onclick="showPage('profile',this)">Profile</button>
+    </nav>
+
+  </div>
 </header>
 
 <main>
+
+<!-- HOME -->
 <section id="home">
-<div class="hero"><h1>Learn something useful today.</h1><p>Discover culture, education, environment, history, traditional skills and life skills.</p></div>
-<input class="search" id="search" placeholder="Search topics or videos..." oninput="render()">
-<div id="feed"></div>
+
+  <div class="hero">
+    <h1>Learn something useful today.</h1>
+    <p>
+      Discover culture, education, environment, history,
+      traditional skills and useful life skills.
+    </p>
+  </div>
+
+  <input
+    id="search"
+    class="search"
+    type="search"
+    placeholder="Search topics..."
+    oninput="renderPosts()"
+  >
+
+  <div id="feed"></div>
+
 </section>
 
+
+<!-- CATEGORIES -->
 <section id="categories" class="hidden">
-<h2>Categories</h2><div class="grid" id="cats"></div>
+
+  <h2>Explore Categories</h2>
+
+  <div class="grid" id="categoryGrid"></div>
+
 </section>
 
+
+<!-- LEARN -->
 <section id="learn" class="hidden">
-<h2>Learning</h2>
-<div class="card"><div class="content"><h3>Why protect local culture?</h3><p>Local knowledge connects communities, history and future generations.</p><button class="primary" onclick="quiz()">Take quick quiz</button></div></div>
-<div class="card"><div class="content"><h3>Environment basics</h3><p>Small daily actions can help keep our surroundings clean and healthy.</p></div></div>
+
+  <h2>Learning</h2>
+
+  <div class="card learn-card">
+    <h3>🌿 Why protect local culture?</h3>
+
+    <p>
+      Local knowledge connects communities, history and
+      future generations. Learning and sharing traditional
+      knowledge can help keep important values alive.
+    </p>
+
+    <button class="small-btn primary" onclick="quiz()">
+      Take Quick Quiz
+    </button>
+  </div>
+
+  <div class="card learn-card">
+    <h3>🌎 Environment Basics</h3>
+
+    <p>
+      Small daily actions can help keep our surroundings
+      clean and healthy. Reduce waste, reuse useful items,
+      protect water and care for nature.
+    </p>
+  </div>
+
+  <div class="card learn-card">
+    <h3>📚 Learning From History</h3>
+
+    <p>
+      History helps us understand where communities came
+      from and what lessons can guide future generations.
+    </p>
+  </div>
+
+  <div class="card learn-card">
+    <h3>🛠️ Traditional Skills</h3>
+
+    <p>
+      Traditional skills can include farming, weaving,
+      cooking, building, crafts and knowledge passed from
+      one generation to another.
+    </p>
+  </div>
+
 </section>
 
-<section id="profile" class="hidden">
-<h2>Your Profile</h2>
-<div class="card"><div class="content"><h3>Young Learner</h3><p class="meta">Mosaic community member</p><div class="points"><span id="points">0</span> points</div><h3>Badges</h3><div id="badges"></div></div></div>
-<div class="card"><div class="content"><h3>Contribute</h3>
-<div class="field"><label>Title</label><input id="title" placeholder="e.g. The life of farmers"></div>
-<div class="field"><label>Category</label><select id="category"><option>Culture</option><option>Education</option><option>Environment</option><option>History</option><option>Traditional Skills</option><option>Life Skills</option></select></div>
-<div class="field"><label>Description</label><textarea id="desc" rows="3" placeholder="What will people learn?"></textarea></div>
-<button class="primary" onclick="submitPost()">Submit for review</button>
-</div></div>
-<div id="submissions"></div>
+
+<!-- CREATE -->
+<section id="create" class="hidden">
+
+  <h2>Create a Post</h2>
+
+  <div class="card form-card">
+
+    <div class="field">
+      <label>Title</label>
+      <input
+        id="postTitle"
+        placeholder="Example: The life of farmers"
+      >
+    </div>
+
+    <div class="field">
+      <label>Category</label>
+
+      <select id="postCategory">
+
+        <option>Culture</option>
+        <option>Education</option>
+        <option>Environment</option>
+        <option>History</option>
+        <option>Traditional Skills</option>
+        <option>Life Skills</option>
+
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+
+      <textarea
+        id="postDescription"
+        placeholder="What will people learn?"
+      ></textarea>
+
+    </div>
+
+    <button class="small-btn primary" onclick="submitPost()">
+      Publish Post
+    </button>
+
+  </div>
+
 </section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="hidden">
+
+  <div class="card profile-head">
+
+    <div class="avatar">👤</div>
+
+    <h2>Mosaic Member</h2>
+
+    <div class="points">
+      <span id="points">0</span>
+    </div>
+
+    <div class="meta">Learning Points</div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong id="postCount">0</strong>
+        Posts
+      </div>
+
+      <div class="stat">
+        <strong id="savedCount">0</strong>
+        Saved
+      </div>
+
+      <div class="stat">
+        <strong id="likeCount">0</strong>
+        Likes
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card form-card">
+
+    <h3>🏆 Badges</h3>
+
+    <div id="badges"></div>
+
+  </div>
+
+
+  <div class="card form-card">
+
+    <h3>About Mosaic</h3>
+
+    <p class="meta">
+      A place to learn, preserve culture, share knowledge
+      and build useful skills for future generations.
+    </p>
+
+  </div>
+
+</section>
+
 </main>
-<footer>Mosaic · Learn · Keep · Share</footer>
-<div class="toast" id="toast"></div>
+
+
+<footer>
+  Mosaic • Learn • Keep • Share
+</footer>
+
+<div id="toast" class="toast"></div>
+
 
 <script>
-const defaultPosts=[
- {title:"The life of farmers",cat:"Environment",desc:"Learn about everyday farming knowledge and the people who grow our food.",icon:"🌾",likes:12},
- {title:"Traditional skills worth keeping",cat:"Traditional Skills",desc:"Useful knowledge passed from one generation to another.",icon:"🧺",likes:8},
- {title:"A small lesson about our history",cat:"History",desc:"Explore stories and lessons from the past.",icon:"📜",likes:15},
- {title:"Simple life skills",cat:"Life Skills",desc:"Practical ideas that can help in everyday life.",icon:"🛠️",likes:10}
-];
-let posts=JSON.parse(localStorage.getItem("mosaicPosts")||"null")||defaultPosts;
-let saved=JSON.parse(localStorage.getItem("mosaicSaved")||"[]");
-let points=+localStorage.getItem("mosaicPoints")||0;
 
-function show(id,btn){
- document.querySelectorAll("main>section").forEach(s=>s.classList.add("hidden"));
- document.getElementById(id).classList.remove("hidden");
- document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active")); if(btn)btn.classList.add("active");
- if(id==="profile")profile(); if(id==="categories")categories();
+/* =========================
+   DEFAULT POSTS
+========================= */
+
+const defaultPosts = [
+
+  {
+    id:1,
+    title:"The Life of Farmers",
+    cat:"Environment",
+    desc:"Learn about everyday farming knowledge and the people who grow our food.",
+    icon:"🌾",
+    likes:12
+  },
+
+  {
+    id:2,
+    title:"Traditional Skills Worth Keeping",
+    cat:"Traditional Skills",
+    desc:"Useful knowledge passed from one generation to another.",
+    icon:"🧺",
+    likes:8
+  },
+
+  {
+    id:3,
+    title:"A Small Lesson About Our History",
+    cat:"History",
+    desc:"Explore stories and lessons from the past.",
+    icon:"📜",
+    likes:15
+  },
+
+  {
+    id:4,
+    title:"Simple Life Skills",
+    cat:"Life Skills",
+    desc:"Practical ideas that can help in everyday life.",
+    icon:"🛠️",
+    likes:10
+  },
+
+  {
+    id:5,
+    title:"Protect Our Environment",
+    cat:"Environment",
+    desc:"Simple actions that can help protect nature and our communities.",
+    icon:"🌱",
+    likes:7
+  },
+
+  {
+    id:6,
+    title:"Why Education Matters",
+    cat:"Education",
+    desc:"Learning gives people knowledge and skills for the future.",
+    icon:"📚",
+    likes:9
+  }
+
+];
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+let posts;
+
+try{
+  posts = JSON.parse(
+    localStorage.getItem("mosaicPosts")
+  ) || defaultPosts;
+}catch(e){
+  posts = defaultPosts;
 }
-function render(){
- const q=(document.getElementById("search").value||"").toLowerCase();
- const list=posts.filter(p=>(p.title+" "+p.cat+" "+p.desc).toLowerCase().includes(q));
- document.getElementById("feed").innerHTML=list.map((p,i)=>`<article class="card"><div class="thumb">${p.icon||"🎓"}</div><div class="content"><div class="meta">${p.cat} · ${p.status||"Published"}</div><h2>${p.title}</h2><p>${p.desc}</p><div class="actions"><button onclick="like(${i})">❤️ ${p.likes||0}</button><button onclick="comment()">💬 Comment</button><button onclick="save(${i})">🔖 ${saved.includes(i)?"Saved":"Save"}</button><button onclick="share('${encodeURIComponent(p.title)}')">↗ Share</button></div></div></article>`).join("")||"<p>No results found.</p>";
+
+let saved = [];
+
+try{
+  saved = JSON.parse(
+    localStorage.getItem("mosaicSaved")
+  ) || [];
+}catch(e){
+  saved = [];
 }
-function categories(){document.getElementById("cats").innerHTML=["Culture","Education","Environment","History","Traditional Skills","Life Skills"].map(c=>`<button class="cat" onclick="filterCat('${c}')">${c}</button>`).join("")}
-function filterCat(c){show("home");document.getElementById("search").value=c;render()}
-function like(i){posts[i].likes=(posts[i].likes||0)+1;points++;saveState();render();toast("Liked! +1 point")}
-function save(i){if(!saved.includes(i)){saved.push(i);points++;toast("Saved! +1 point")}else{saved=saved.filter(x=>x!==i);toast("Removed from saved")};saveState();render()}
-function comment(){const c=prompt("Write a comment:");if(c){points++;saveState();toast("Comment added! +1 point")}}
-async function share(t){const text=decodeURIComponent(t);try{await navigator.share({title:text,text:"Check this on Mosaic"});points++;saveState()}catch(e){await navigator.clipboard?.writeText(location.href);toast("Link copied")}}
+
+let points =
+  Number(localStorage.getItem("mosaicPoints")) || 0;
+
+
+/* =========================
+   SAVE DATA
+========================= */
+
+function saveData(){
+
+  localStorage.setItem(
+    "mosaicPosts",
+    JSON.stringify(posts)
+  );
+
+  localStorage.setItem(
+    "mosaicSaved",
+    JSON.stringify(saved)
+  );
+
+  localStorage.setItem(
+    "mosaicPoints",
+    points
+  );
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(id,btn){
+
+  document
+    .querySelectorAll("main > section")
+    .forEach(function(section){
+
+      section.classList.add("hidden");
+
+    });
+
+
+  const page =
+    document.getElementById(id);
+
+  if(page){
+    page.classList.remove("hidden");
+  }
+
+
+  document
+    .querySelectorAll("nav button")
+    .forEach(function(button){
+
+      button.classList.remove("active");
+
+    });
+
+
+  if(btn){
+    btn.classList.add("active");
+  }
+
+
+  if(id === "home"){
+    renderPosts();
+  }
+
+  if(id === "categories"){
+    renderCategories();
+  }
+
+  if(id === "profile"){
+    renderProfile();
+  }
+
+}
+
+
+/* =========================
+   POSTS
+========================= */
+
+function renderPosts(){
+
+  const feed =
+    document.getElementById("feed");
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered =
+    posts.filter(function(post){
+
+      return (
+        post.title.toLowerCase().includes(search) ||
+        post.cat.toLowerCase().includes(search) ||
+        post.desc.toLowerCase().includes(search)
+      );
+
+    });
+
+
+  if(filtered.length === 0){
+
+    feed.innerHTML =
+      '<div class="empty">No posts found.</div>';
+
+    return;
+
+  }
+
+
+  feed.innerHTML =
+    filtered.map(function(post){
+
+      const realIndex =
+        posts.findIndex(
+          p => p.id === post.id
+        );
+
+      const isSaved =
+        saved.includes(post.id);
+
+
+      return `
+
+        <article class="card">
+
+          <div class="post-top">
+
+            <div class="post-icon">
+              ${post.icon || "📖"}
+            </div>
+
+            <div>
+              <div class="meta">
+                ${escapeHTML(post.cat)}
+              </div>
+
+              <strong>
+                Mosaic Community
+              </strong>
+            </div>
+
+          </div>
+
+
+          <div class="post-content">
+
+            <h3>
+              ${escapeHTML(post.title)}
+            </h3>
+
+            <p>
+              ${escapeHTML(post.desc)}
+            </p>
+
+
+            <div class="actions">
+
+              <button
+                onclick="likePost(${realIndex})">
+                ❤️ ${post.likes || 0}
+              </button>
+
+
+              <button
+                onclick="commentPost(${realIndex})">
+                💬 Comment
+              </button>
+
+
+              <button
+                onclick="savePost(${post.id})">
+                ${isSaved ? "🔖 Saved" : "🔖 Save"}
+              </button>
+
+
+              <button
+                onclick="sharePost(${post.id})">
+                📤 Share
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+const categoryData = [
+
+  ["🌿","Culture"],
+  ["📚","Education"],
+  ["🌎","Environment"],
+  ["📜","History"],
+  ["🧺","Traditional Skills"],
+  ["🛠️","Life Skills"]
+
+];
+
+
+function renderCategories(){
+
+  const grid =
+    document.getElementById("categoryGrid");
+
+
+  grid.innerHTML =
+    categoryData.map(function(item){
+
+      return `
+
+        <div
+          class="category"
+          onclick="filterCategory('${item[1]}')">
+
+          <div class="category-icon">
+            ${item[0]}
+          </div>
+
+          ${item[1]}
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+function filterCategory(category){
+
+  showPage("home");
+
+  document.getElementById("search").value =
+    category;
+
+  renderPosts();
+
+}
+
+
+/* =========================
+   LIKE
+========================= */
+
+function likePost(index){
+
+  posts[index].likes =
+    (posts[index].likes || 0) + 1;
+
+  points++;
+
+  saveData();
+
+  renderPosts();
+
+  toast("Liked! +1 point");
+
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+function savePost(id){
+
+  if(saved.includes(id)){
+
+    saved =
+      saved.filter(
+        function(x){
+          return x !== id;
+        }
+      );
+
+    toast("Removed from saved");
+
+  }else{
+
+    saved.push(id);
+
+    points++;
+
+    toast("Saved! +1 point");
+
+  }
+
+  saveData();
+
+  renderPosts();
+
+}
+
+
+/* =========================
+   COMMENT
+========================= */
+
+function commentPost(index){
+
+  const comment =
+    prompt("Write a comment:");
+
+  if(comment && comment.trim()){
+
+    points++;
+
+    saveData();
+
+    toast("Comment added! +1 point");
+
+  }
+
+}
+
+
+/* =========================
+   SHARE
+========================= */
+
+async function sharePost(id){
+
+  const post =
+    posts.find(
+      p => p.id === id
+    );
+
+  if(!post) return;
+
+
+  const text =
+    post.title + "\n\n" + post.desc;
+
+
+  try{
+
+    if(navigator.share){
+
+      await navigator.share({
+
+        title:post.title,
+
+        text:text,
+
+        url:location.href
+
+      });
+
+    }else{
+
+      await navigator.clipboard.writeText(text);
+
+      toast("Post copied to clipboard");
+
+    }
+
+  }catch(e){
+
+    toast("Share cancelled");
+
+  }
+
+}
+
+
+/* =========================
+   CREATE POST
+========================= */
+
 function submitPost(){
- const title=document.getElementById("title").value.trim(),cat=document.getElementById("category").value,desc=document.getElementById("desc").value.trim();
- if(!title){toast("Please enter a title");return}
- posts.unshift({title,cat,desc:desc||"New learning contribution.",icon:"📤",likes:0,status:"Pending Review"});
- points+=5;saveState();profile();toast("Submitted successfully — Pending Review");
- document.getElementById("title").value="";document.getElementById("desc").value="";
+
+  const title =
+    document
+      .getElementById("postTitle")
+      .value
+      .trim();
+
+
+  const category =
+    document
+      .getElementById("postCategory")
+      .value;
+
+
+  const description =
+    document
+      .getElementById("postDescription")
+      .value
+      .trim();
+
+
+  if(!title){
+
+    toast("Please enter a title");
+
+    return;
+
+  }
+
+
+  if(!description){
+
+    toast("Please write a description");
+
+    return;
+
+  }
+
+
+  const icons = {
+
+    "Culture":"🌿",
+    "Education":"📚",
+    "Environment":"🌎",
+    "History":"📜",
+    "Traditional Skills":"🧺",
+    "Life Skills":"🛠️"
+
+  };
+
+
+  const newPost = {
+
+    id:Date.now(),
+
+    title:title,
+
+    cat:category,
+
+    desc:description,
+
+    icon:icons[category] || "📖",
+
+    likes:0,
+
+    mine:true
+
+  };
+
+
+  posts.unshift(newPost);
+
+  points += 5;
+
+  saveData();
+
+
+  document.getElementById("postTitle").value="";
+  document.getElementById("postDescription").value="";
+
+
+  toast("Post published! +5 points");
+
+
+  setTimeout(function(){
+
+    showPage("home");
+
+    renderPosts();
+
+  },700);
+
 }
-function profile(){
- document.getElementById("points").textContent=points;
- document.getElementById("badges").innerHTML=(points>=5?'<span class="badge">🏅 Helpful Creator</span>':'')+(points>=10?'<span class="badge">📚 Quiz Starter</span>':'')+(points<5?'<span class="meta">Earn points to unlock badges.</span>':'');
- document.getElementById("submissions").innerHTML=posts.filter(p=>p.status==="Pending Review").map(p=>`<div class="card"><div class="content"><b>${p.title}</b><p class="meta">${p.cat} · Pending Review</p></div></div>`).join("");
+
+
+/* =========================
+   PROFILE
+========================= */
+
+function renderProfile(){
+
+  document.getElementById("points")
+    .textContent = points;
+
+
+  document.getElementById("postCount")
+    .textContent =
+      posts.filter(
+        p => p.mine
+      ).length;
+
+
+  document.getElementById("savedCount")
+    .textContent =
+      saved.length;
+
+
+  const likes =
+    posts.reduce(
+      function(total,p){
+
+        return total + (p.likes || 0);
+
+      },0
+    );
+
+
+  document.getElementById("likeCount")
+    .textContent = likes;
+
+
+  const badges =
+    document.getElementById("badges");
+
+
+  let result = [];
+
+
+  if(points >= 1){
+    result.push("🌱 First Step");
+  }
+
+  if(points >= 5){
+    result.push("📚 Learner");
+  }
+
+  if(points >= 10){
+    result.push("🌿 Knowledge Keeper");
+  }
+
+  if(points >= 25){
+    result.push("🏆 Community Helper");
+  }
+
+  if(points >= 50){
+    result.push("⭐ Mosaic Champion");
+  }
+
+
+  if(result.length === 0){
+    result.push("🌱 Start learning to earn badges");
+  }
+
+
+  badges.innerHTML =
+    result.map(
+      b => `<span class="badge">${b}</span>`
+    ).join("");
+
 }
-function quiz(){const a=prompt("Which helps preserve local culture?\\nA) Forgetting local knowledge\\nB) Learning and sharing it\\nC) Destroying old records");if(a&&a.toUpperCase()==="B"){points+=3;saveState();toast("Correct! +3 points");profile()}else if(a)toast("Not quite. Try again!")}
-function saveState(){localStorage.setItem("mosaicPosts",JSON.stringify(posts));localStorage.setItem("mosaicSaved",JSON.stringify(saved));localStorage.setItem("mosaicPoints",points)}
-function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",2200)}
-render();categories();
-<script src="app.js"></script>
+
+
+/* =========================
+   QUIZ
+========================= */
+
+function quiz(){
+
+  const answer =
+    prompt(
+      "Quick Quiz:\n\n" +
+      "What helps preserve local culture?\n\n" +
+      "A. Forgetting traditional knowledge\n" +
+      "B. Learning and sharing it\n" +
+      "C. Destroying old records\n\n" +
+      "Type A, B or C:"
+    );
+
+
+  if(!answer) return;
+
+
+  if(answer.toUpperCase() === "B"){
+
+    points += 5;
+
+    saveData();
+
+    toast("Correct! +5 points 🎉");
+
+  }else{
+
+    toast("Not quite. Try learning again.");
+
+  }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+
+function toast(message){
+
+  const box =
+    document.getElementById("toast");
+
+
+  box.textContent = message;
+
+  box.style.display = "block";
+
+
+  clearTimeout(toastTimer);
+
+
+  toastTimer =
+    setTimeout(function(){
+
+      box.style.display = "none";
+
+    },2200);
+
+}
+
+
+/* =========================
+   SECURITY / TEXT
+========================= */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   START APP
+========================= */
+
+renderPosts();
+
+renderCategories();
+
+renderProfile();
+
+</script>
+
 </body>
 </html>
